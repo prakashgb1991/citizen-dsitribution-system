@@ -1,0 +1,46 @@
+version: '3.7'
+services:
+
+  Eureka-Service:
+    image: mms/Eureka-Service:0.0.1-SNAPSHOT
+    build:
+      context: Eureka-Service
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    restart: always
+    networks:
+      - mms-network
+
+  APIGateway:
+    image: mms/APIGateway:0.0.1-SNAPSHOT
+    build:
+      context: APIGateway
+      dockerfile: Dockerfile
+    environment:
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+    ports:
+      - "9001:9001"
+    restart: always
+    depends_on:
+      - Eureka-Service
+    networks:
+      - mms-network
+
+  employee-management-service:
+    image: mms/employee-management-service:0.0.1-SNAPSHOT
+    build:
+      context: currency-exchange-service
+      dockerfile: Dockerfile    
+    ports:
+      - "8000:8000"
+    restart: always
+    depends_on:
+      - Eureka-Service
+    networks:
+      - mms-network
+
+  
+# Networks to be created to facilitate communication between containers
+networks:
+  mms-network:
