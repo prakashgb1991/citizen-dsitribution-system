@@ -27,7 +27,7 @@ use docker command : $ docker run -p 8080:8080 prakashgb1991/citizen-distributio
 
 ## JUnit result
 
-![alt text](https://github.com/prakashgb1991/CDS/blob/master/2020-07-01_14h57_54.png)
+![alt text](https://github.com/prakashgb1991/citizen-dsitribution-system/blob/master/2020-07-02_11h00_25.png)
 
 # REST API
 
@@ -66,3 +66,7 @@ url: [http://localhost:8080/users](http://localhost:8080/users)
 {
     "message": "Uploaded the file successfully: user.csv"
 }
+
+###Error Response
+
+HTTP 500 Internal Server Error
