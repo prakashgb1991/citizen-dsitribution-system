@@ -79,7 +79,7 @@ public class UserController {
 	 * @param max
 	 * @return
 	 */
-	@GetMapping("/")
+	@GetMapping
 	public ResponseEntity<List<User>> getUsers(
 			@RequestParam(value = "min", required = false, defaultValue = "0") BigDecimal min,
 			@RequestParam(value = "max", required = false, defaultValue = "4000") BigDecimal max) {
