@@ -1,4 +1,4 @@
-# Citizen Disbursement System (CDS)  using Spring Boot and H2 In memory database
+# Citizen Disbursement System (CDS)  using Spring Boot 
 
 Run com.cds.CDSServiceApplication as a Java Application.
 
@@ -15,7 +15,7 @@ or
 use docker command : $ docker run -p 8080:8080 prakashgb1991/citizen-distribution-system:0.0.1-SNAPSHOT
 
 
-## H2 Console
+## H2 Console(currently used)
 
 - http://localhost:8080/h2-console
 - Use `jdbc:h2:mem:testdb` as JDBC URL 
@@ -37,7 +37,7 @@ The REST API to the example app is described below.
 
 ### Request
 
-url: [a link](http://localhost:8080/users/)
+url: [http://localhost:8080/users/](http://localhost:8080/users/)
 
 **URL Params**
 

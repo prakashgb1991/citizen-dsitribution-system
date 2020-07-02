@@ -1,8 +1,13 @@
 package com.cds.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import java.math.BigDecimal;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +23,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.cds.model.User;
+import com.cds.service.UserService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -41,6 +49,22 @@ public class UserControllerTest {
 		assertEquals(200, response.getStatusCodeValue());
 
 	}
+	
+	@Test
+	public void getUsersEmpty() throws Exception {
+		ResponseEntity<String> response = restTemplate
+				.getForEntity(new URL("http://localhost:" + port + "/users/?min=-1&max=-3").toString(), String.class);
+		assertEquals(204, response.getStatusCodeValue());
+
+	}
+	
+	@Test
+	public void getUsersBadReq() throws Exception {
+		ResponseEntity<String> response = restTemplate
+				.getForEntity(new URL("http://localhost:" + port + "/users/?min=test&max=-3").toString(), String.class);
+		assertEquals(400, response.getStatusCodeValue());
+
+	}
 
 	@Test
 	public void uploadTest() throws Exception {
@@ -48,6 +72,14 @@ public class UserControllerTest {
 		MockMultipartFile file = new MockMultipartFile("file", "test.csv", "text/csv", text.getBytes());
 		mockMvc.perform(MockMvcRequestBuilders.multipart("/users/upload").file(file).characterEncoding("UTF-8"))
 				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	
+	@Test
+	public void uploadTestFail() throws Exception {
+		String text = "Text, to, be ,uploaded.";
+		MockMultipartFile file = new MockMultipartFile("file", "test.txt", "text/txt", text.getBytes());
+		mockMvc.perform(MockMvcRequestBuilders.multipart("/users/upload").file(file).characterEncoding("UTF-8"))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 
 }

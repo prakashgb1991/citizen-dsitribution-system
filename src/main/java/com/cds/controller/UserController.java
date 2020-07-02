@@ -86,11 +86,10 @@ public class UserController {
 		log.info("fetching the Users");
 		try {
 			List<User> users = userService.getUsers(min, max);
-
+           
 			if (users.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-
 			return new ResponseEntity<>(users, HttpStatus.OK);
 		} catch (Exception e) {
 			log.error("cannot fetch users",e);

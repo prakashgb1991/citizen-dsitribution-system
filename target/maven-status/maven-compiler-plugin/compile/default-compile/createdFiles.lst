@@ -1,9 +1,9 @@
+com\cds\CDSServiceApplication.class
+com\cds\util\ResponseMessage.class
 com\cds\repository\UserRepository.class
 com\cds\service\UserService.class
-com\cds\CDSServiceApplication.class
 com\cds\exception\GenericExceptionAdvice.class
 com\cds\util\CSVHelper.class
 com\cds\model\User.class
 com\cds\service\impl\UserServiceImpl.class
-com\cds\util\ResponseMessage.class
 com\cds\controller\UserController.class
