@@ -37,7 +37,7 @@ The REST API to the example app is described below.
 
 ### Request
 
-url: [http://localhost:8080/users/](http://localhost:8080/users/)
+url: [http://localhost:8080/users](http://localhost:8080/users)
 
 **URL Params**
 
