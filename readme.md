@@ -31,7 +31,6 @@ use docker command : $ docker run -p 8080:8080 prakashgb1991/citizen-distributio
 
 # REST API
 
-The REST API to the example app is described below.
 
 ## Get list of Users
 
